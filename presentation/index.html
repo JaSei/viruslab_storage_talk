@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Viruslab storage</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css">
+		<link rel="stylesheet" href="css/custom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+				    <section data-markdown data-background-image="img/warehouse.jpg">
+                        <script type="text/template">
+                            # Viruslab Storage <!-- .element: class="opacity-bg" -->
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Viruslab storage
+
+                            Jan Seidl <seidl@avast.com>
+                            Viruslab Systems
+
+                            https://jasei.github.io/viruslab_storage_talk
+                            ![qr code](img/qrcode.png)
+
+                            Note:
+                        </script>
+                    </section>
+
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Obsah
+
+                            * Co vlastne dela ThreatLab 
+                            * Potrebujeme ukladat soubory
+                            * Pravek/Starovek/Stredovek
+                            * Soucasnost
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Dlouha cesta od nekolika gigabytoveho samba share k petabytove objektove storage 
+
+                            Note:
+                            Alternativni nazev
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## aneb
+                            ## pouzijte na dany problem vhodny tool
+
+                            Note:
+                            Obecny cil, ktery chci sdelit
+                        </script>
+                    </section>
+
+				    <section data-background-image="img/tool1.jpg">
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            # Storage
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            > Pokud nepotrebujete blokovou storage, pouzijte objektovou storage
+
+                            Note:
+                            Konkretni cil ktery chci sdelit
+                        </script>
+                    </section>
+                </section>
+
+                <section>
+				    <section data-markdown data-background-image="img/square-peg-round-hole.jpg">
+                        <script type="text/template">
+                            # Co vlastne dela ThreatLab? <!-- .element: class="fragment opacity-bg" -->
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Co vlastne dela ThreatLab?
+
+                            ![simple ThreatLab chart](img/threatlab.png)
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Co vlastne dela ThreatLab?
+
+                            ![simple ThreatLab chart with input](img/threatlab2a.png)
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Co vlastne dela ThreatLab?
+
+                            ![simple ThreatLab chart with input and output](img/threatlab2.png)
+
+                            Note:
+                        </script>
+                    </section>
+                </section>
+
+                <section>
+				    <section data-markdown data-background-image="img/drillpress.jpg">
+                        <script type="text/template">
+                            # Potrebujeme ukladat soubory <!-- .element: class="fragment opacity-bg" -->
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            1. unikatni identifikator (ID)
+                            2. cesta
+                            3. uloziste
+                            4. metadata
+                        </script>
+                    </section>
+
+				    <section>
+                        <h2>unikatni identifikator (ID)</h2>
+
+                        <p>
+                        MD5 / SHA1 / <span class="fragment highlight-red">SHA256</span>
+                        </p>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## unikatni identifikator (ID)
+                            
+                            | |md5|sha1|sha256|
+                            |-|---|----|------|
+                            |delka|16B|20B|32B|
+                            |hex|32|40|64|
+                            |kolize|$$\frac{1}{2^{128}}$$|$$\frac{1}{2^{160}}$$|$$\frac{1}{2^{256}}$$|
+
+                            Note:
+                            Pocet atomu ve vesmiru 10^{78} - 10^{100}
+                        </script>
+                    </section>
+
+				    <section data-background-image="img/universe.jpg">
+                        <div class="fragment opacity-bg">
+                            $$2^{256} = 1.157920892\cdot10^{77}$$
+
+                            vs.
+
+                            $$10^{78} - 10^{100}$$ 
+                        </div>
+
+                        <aside class="notes">
+                            Pocet atomu ve vesmiru 10^{78} - 10^{100}
+                        </aside>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## pocet souboru v adresari
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section>
+                        <h2>cesta</h2>
+
+                        <div>
+                            <span class="fragment highlight-red" data-fragment-index="1">e3</span><!--
+                         --><span class="fragment highlight-blue" data-fragment-index="2">b0</span><!--
+                         --><span class="fragment highlight-green" data-fragment-index="3">c4</span><!--
+                         -->4298fc1c14...a495991b7852b855
+                        </div>
+                        <div style="font-size:128px">
+                            ⇩
+                        </div>
+                        <div>
+                            //storage/share<!--
+                         -->/<span class="fragment highlight-red" data-fragment-index="1">e3</span><!--
+                         -->/<span class="fragment highlight-blue" data-fragment-index="2">b0</span><!--
+                         -->/<span class="fragment highlight-green" data-fragment-index="3">c4</span><!--
+                         -->/e3b0c44298...1b7852b855
+                        </div>
+
+                        <aside class="notes">
+                            e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                        </aside>
+                    </section>
+
+				    <section>
+                        <h2>cesta</h2>
+
+                        <div>
+                           /<span class="fragment highlight-red" data-fragment-index="1">00-ff</span>/<!--
+                         --><span class="fragment highlight-blue" data-fragment-index="2">00-ff</span>/<!--
+                         --><span class="fragment highlight-green" data-fragment-index="3">00-ff</span>/
+                        </div>
+                        <div style="font-size:128px">
+                            ⇩
+                        </div>
+                        <div>
+                            <span class="fragment highlight-red" data-fragment-index="1">256</span>x<!--
+                         --><span class="fragment highlight-blue" data-fragment-index="2">256</span>x<!--
+                         --><span class="fragment highlight-green" data-fragment-index="3">256</span>
+                         = 16,777,216
+                        </div>
+
+                        <aside class="notes">
+                            e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                        </aside>
+                    </section>
+
+				    <section data-background-image="img/postgres.png">
+                        <div class="fragment opacity-bg">
+                            <h2>metadata<br />=<br />PostgreSQL</h2>
+                        </div>
+                    </section>
+
+                </section>
+
+                <section>
+				    <section data-markdown>
+                        <script type="text/template">
+                            # Pravek
+
+                            WIN server + diskove pole
+
+                            Kolem roku 2012 upgrade z 2x16TB na 2x30TB
+
+                            Aplikacni replikace
+
+                            Note:
+                                max 4 diskove pole
+
+                                predpravekem jenom jedna instance, touhle dobou uz 2 DC
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Starovek
+
+                            SMB share
+
+                            Dell R720 (12x1TB)
+
+                            Vykon
+
+                            Map reduce idea
+
+                            Aplikacni replikace
+
+                            GlusterFS/CEPH aka block storage experiment
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Sredovek
+
+                            NAS
+
+                            Aplikacni replikace
+
+                            Note:
+                        </script>
+                    </section>
+                </section>
+
+                <section>
+				    <section data-markdown>
+                        <script type="text/template">
+                            ## Prichazi objektova storage
+
+                            NAS
+
+                            Aplikacni replikace
+
+                            Note:
+                        </script>
+                    </section>
+                </section>
+
+                <section>
+				    <section data-markdown>
+                        <script type="text/template">
+                            # Zaver
+
+                             > Pokud nepotrebujete blokovou storage, pouzijte objektovou storage
+
+                            Jan Seidl <!-- {.element: class="fragment grow" style="float:right"} -->
+
+                            Note:
+                        </script>
+                    </section>
+
+				    <section>
+                        <img src="img/cutter1.jpg" />
+                    </section>
+
+				    <section data-background-image="img/cutter2.jpg">
+                    </section>
+
+                </section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                hash: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true },
+            		{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,8 @@
+.reveal section img { background:none; border:none; box-shadow:none; }
+
+.reveal .slides section .opacity-bg {
+    background-color: #fdf6e3;
+}
+.reveal .slides section .fragment.opacity-bg {
+    background-color: #fdf6e3;
+}
