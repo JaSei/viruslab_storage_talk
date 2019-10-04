@@ -6,3 +6,15 @@
 .reveal .slides section .fragment.opacity-bg {
     background-color: #fdf6e3;
 }
+
+.reveal section li {
+    list-style-type: none;
+}
+
+.reveal section .plus {
+    color: #17ff2e; 
+}
+
+.reveal section .minus {
+    color: #ff2c2d;
+}
