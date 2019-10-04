@@ -53,10 +53,10 @@
 
                             * Co vlastně dělá ThreatLab
                             * Potřebujeme ukládat soubory
-                            * Kam a jak je uložíme?
-                            * Jak to budeme používat?
+                            * Kam ty soubory uložíme?
+                            * Jak je budeme číst a zapisovat?
                             * A tak jsme vybrali HCP
-                            * Ale pozor na
+                            * Na co si dát pozor
                             * Tak takové to tedy bylo...
 
                             Note:
@@ -162,10 +162,11 @@
                         <script type="text/template">
                             ## Technologie
 
-                            * event oriented architektura
-                            * microservice
-                            * docker
-                            * on-prem cloud
+                            * Event oriented architektura
+                            * Microservice
+                            * Docker
+                            * On-premise cloud (kubernetes)
+                            * Scala/Python
                             * ...
 
                             Note:
@@ -243,7 +244,7 @@
                 <section>
                     <section data-markdown data-background-image="img/x.jpg">
                         <script type="text/template">
-                            # Kam a jak je uložíme? <!-- .element: class="fragment opacity-bg" -->
+                            # Kam ty soubory uložíme? <!-- .element: class="fragment opacity-bg" -->
 
                             ## (a trochu historie k tomu) <!-- .element: class="fragment opacity-bg" -->
                         </script>
@@ -311,6 +312,8 @@
 
                         <aside class="notes">
                             e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                            
+                            1425852133 ÷16777216 = 85
                         </aside>
                     </section>
 
@@ -381,6 +384,7 @@
 
                             - 10/2016 - 2018
                             - Starověk + NAS
+                            - SMB share
                             - Aplikační replikace
                             - NAS pomalý (kB/s)
 
@@ -393,7 +397,7 @@
                 <section>
                     <section data-markdown data-background-image="img/brush.jpg">
                         <script type="text/template">
-                            # Jak to budeme používat? <!-- .element: class="fragment opacity-bg" -->
+                            # Jak je budeme číst a zapisovat? <!-- .element: class="fragment opacity-bg" -->
                         </script>
                     </section>
 
@@ -411,7 +415,8 @@
                         <script type="text/template">
                             ## Path(sha256) + samba
 
-                            - <span class="minus">⊖</span> API + samba (2 různe API)
+                            - <span class="plus">⊕</span> fungovalo to
+                            - <span class="minus">⊖</span> API + SMB (2 různé API)
                             - <span class="minus">⊖</span> Škálovatelnost pouze v párech
                             - <span class="minus">⊖</span> Rozložení nových a starých souboru
                             - <span class="minus">⊖</span> Aplikační replikace
@@ -432,6 +437,9 @@
                             `STORAGE`/share/e3/b0/c4/e3b0c44298...1b7852b855
 
                             Note:
+                            - knihovna
+                            - aktualizace byl problem (nasazovani)
+                            - zapomenute nove nody 
                         </script>
                     </section>
                     
@@ -496,8 +504,12 @@
                             ![stor](img/stor.png)
                             
                             Note:
-                            HashLookup as Service
-                            Objektova storage!
+                            - HashLookup as Service
+                            - Objektova storage!
+                            - https://github.com/avast/stor
+                            - HTTP API
+                            - velmi nam to pomohlo pri prechodu na objektovou storage
+
                         </script>
                     </section>
                 </section>
@@ -516,9 +528,9 @@
                             
                             - `1.2GiB/s` čtení, `200MiB/s` zápis
                             - HA (Praha - Brno)
-                            - transparentní replikace
-                            - REST/S3 API
-                            - 1TB/day	
+                            - Transparentní replikace
+                            - HTTP/REST/S3 API
+                            - 1TB/den	
                             - ...
                             
                             Note:
@@ -532,6 +544,9 @@
                             ![histogram](img/histogram.png)
                             
                             Note:
+                            - nonpe & pe
+                            - soucast specifikace
+                            - akceptacni testy testovaly objekty se zastoupenim velikosti dle histogramu
                         </script>
                     </section>
 
@@ -573,8 +588,10 @@
                             - <span class="minus">⊖</span> Není vhodná pro transakční data
                             
                             Note:
+                            - immutabilni
                             - latence - filesystem garantuje IOPS
                             - nepodporuje locking and sharing mechanism
+                            - Pojem IOPS (input / output operations per second) nám vysvětluje, kolik čtecích a zápisových operací je disk schopen provést. Zjednodušeně nám tedy hodnota IOPS říká, jaký je vlastně výkon disku.
                         </script>
                     </section>
                     
@@ -601,15 +618,15 @@
                 <section>
                     <section data-markdown data-background-image="img/pizza.jpg">
                         <script type="text/template">
-                            # Ale pozor na <!-- .element: class="fragment opacity-bg" -->
+                            # Na co si dát pozor <!-- .element: class="fragment opacity-bg" -->
                         </script>
                     </section>
 
                     <section data-markdown>
                         <script type="text/template">
-                            ## Ale pozor na                            
+                            ## Na co si dát pozor                            
 
-                            - Balancing
+                            - Load balancing
                             - Erasure coding
                             - Rebalancing
                             - Replikace synchronní či asynchronní?
@@ -621,15 +638,15 @@
 
                     <section data-markdown>
                         <script type="text/template">
-                            ## Balancing
+                            ## Load balancing
                             
                             - Load balancer
-                                - Distribuovaný
                                 - HA
+                                - Distribuovaný
                                 - Složitějsí (a dražší)
                             - DNS balancer
                                 - Jednodušší
-                                - Objektová storage musí podporovat aliasy
+                                - Problém s aliasy
                                 - Přepnutí je pomalé (TTL)
                             
                             Note:
@@ -642,6 +659,9 @@
                             
                             ![erasure coding](img/erasure_coding.png)
                             Note:
+                            - technika nahrazujici raid vyuzivajici vice disku
+                            - v pripade vypadku jednoho disku... okmazite prepocitava
+                            - v pripade vypadku N disku dochazi k nedostupnosti dat
                         </script>
                     </section>
 
@@ -661,6 +681,9 @@
 
                             
                             Note:
+                            - jak se chova synchronni replikace
+                            - jak asynchronni
+                            - HCP - metadata a data replikace
                             - https://www.druva.com/blog/object-storage-versus-block-storage-understanding-technology-differences/
                         </script>
                     </section>
@@ -676,6 +699,10 @@
                             Note:
                             - https://www.slideshare.net/GrishaWeintraub/cap-28353551
                             - https://sw-samuraj.cz/2017/04/cap-theorem/
+
+                            - Konzistence (Consistency) - systém vrátí při každém čtení poslední zápis.
+                            - Dostupnost (Availability) - systém vrátí pro každý požadavek odpověď, nicméně bez garance, že jde o poslední zápis.
+                            - Tolerance rozdělení (Partition Tolerance) - systém zpracovává informace navzdory tomu, že došlo k rozdělení sítě (network partition), způsobené chybou komunikace mezi sub-systémy.
                         </script>
                     </section>
 
