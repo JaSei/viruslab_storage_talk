@@ -1,4 +1,10 @@
-.reveal section img { background:none; border:none; box-shadow:none; }
+.reveal.reveal img
+{
+    border: none;
+    box-shadow: none;
+    max-height: calc(47vh);
+    max-width: calc(47vw);
+}
 
 .reveal .slides section .opacity-bg {
     background-color: #fdf6e3;

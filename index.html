@@ -100,6 +100,8 @@
 
                             Note:
                             Konkretni cil ktery chci sdelit
+
+                            Dalsi cast: Co vlastne dela ThreatLab
                         </script>
                     </section>
                 </section>
@@ -172,6 +174,8 @@
                             Note:
                             - Zajimalo by to nekoho podrobneji?
                             - Mozne tema na dalsi talk...
+
+                            Dalsi cast: Potrebujeme ukladat soubory
                         </script>
                     </section>
 
@@ -238,6 +242,9 @@
                         <div class="fragment opacity-bg">
                             <h2>metadata<br />=<br />PostgreSQL</h2>
                         </div>
+                        <aside class="notes">
+                            Dalsi cast: Kam ty soubory ulozime?
+                        </aside>
                     </section>
                 </section>
 
@@ -389,6 +396,7 @@
                             - NAS pomalý (kB/s)
 
                             Note:
+                            Dalsi cast: Jak je budeme cist a zapisovat
                         </script>
                     </section>
 
@@ -510,6 +518,8 @@
                             - HTTP API
                             - velmi nam to pomohlo pri prechodu na objektovou storage
 
+                            Note:
+                            Dalsi cast: A tak jsme vybrali HCP
                         </script>
                     </section>
                 </section>
@@ -554,7 +564,7 @@
                         <script type="text/template">
                             # Co je objekt?
                             
-                            ![objekt storage vs block storage](img/object-storage.png)
+                            ![objekt storage vs block storage](img/object-storage.png) <!-- .element: class="stretch" -->
                     
                             Note:
                             - https://www.druva.com/blog/object-storage-versus-block-storage-understanding-technology-differences/
@@ -610,6 +620,8 @@
                             
                             Note:
                             - GCS, Azure
+
+                            Dalsi cast: Na co si dat pozor
                         </script>
                     </section>
                     
@@ -703,6 +715,7 @@
                             - Konzistence (Consistency) - systém vrátí při každém čtení poslední zápis.
                             - Dostupnost (Availability) - systém vrátí pro každý požadavek odpověď, nicméně bez garance, že jde o poslední zápis.
                             - Tolerance rozdělení (Partition Tolerance) - systém zpracovává informace navzdory tomu, že došlo k rozdělení sítě (network partition), způsobené chybou komunikace mezi sub-systémy.
+                            Dalsi cast: Tak takove to tedy bylo...
                         </script>
                     </section>
 
@@ -778,7 +791,7 @@
             const incrementPerDay = 2000000;
             const incrementPerMilisecond = incrementPerDay/(60*60*24*1000)
 //                            - 1,425,852,133
-//                            - 1.46PB
+//                            - 1.47PB
             
             var x = setInterval(function() {
                 const now = new Date().getTime();
